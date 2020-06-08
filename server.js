@@ -11,39 +11,45 @@ let nextId = 7;
 let friends = [
   {
     id: 1,
-    name: 'Rachel Green',
-    age: 30,
-    email: 'rachel@friends.com'
+    name: 'Krillin',
+    age: 40,
+    email: 'destructoDisk@gmail.com',
+    picture: 'https://media1.tenor.com/images/22db41774080e9faf5aadc5ec8aff7e0/tenor.gif?itemid=11098959'
   },
   {
     id: 2,
-    name: 'Joey Tribbiani',
-    age: 34,
-    email: 'joey@friends.com'
+    name: 'Gohan',
+    age: 23,
+    email: 'ibeatCell@gmail.com',
+    picture: 'https://media1.tenor.com/images/6a948e2fe83c9f355b6f8bb570b1cd9e/tenor.gif?itemid=12375586'
   },
   {
     id: 3,
-    name: 'Chandler Bing',
-    age: 32,
-    email: 'chandler@friends.com'
+    name: 'Vegeta',
+    age: 41,
+    email: 'princeVegeta@gmail.com',
+    picture: 'https://media.tenor.com/images/47a1d5bf6f266a75fdbb0bf6416ba4f4/tenor.gif'
   },
   {
     id: 4,
-    name: 'Ross Geller',
-    age: 32,
-    email: 'ross@friends.com'
+    name: 'Piccolo',
+    age: 28,
+    email: 'namekianDude@gmail.com',
+    picture: 'https://media.tenor.com/images/cd9d1003990871476ca4b8f971aaba34/tenor.gif'
   },
   {
     id: 5,
-    name: 'Monica Bing',
-    age: 31,
-    email: 'monica@friends.com'
+    name: 'Master Roshi',
+    age: 300,
+    email: 'notCreepyAtAll@gmail.com',
+    picture: 'https://media1.tenor.com/images/b50825ee0d8d4fde937b33581beaf805/tenor.gif?itemid=5788111'
   },
   {
     id: 6,
-    name: 'Phoebe Buffay-Hannigan',
-    age: 30,
-    email: 'phoebe@friends.com'
+    name: 'Android 17',
+    age: 20,
+    email: 'ihatePoachers@gmail.com', 
+    picture: 'https://media.tenor.com/images/501ee0da29a7ef71d4f5698d0fd6b9ef/tenor.gif'
   }
 ];
 
