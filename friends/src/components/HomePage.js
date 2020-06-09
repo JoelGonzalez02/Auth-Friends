@@ -11,8 +11,6 @@ const HomePage = props => {
           {props.loggedState ? <a onClick={() => props.logOut()} href='/'>Log Out</a> : <Link to='/protected'>Login</Link>}
         </div>
       </nav>
-     <div className='home'>
-    </div>
     </>
   )
 }

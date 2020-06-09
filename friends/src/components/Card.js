@@ -10,7 +10,7 @@ const Card = props => {
                     <img src={friend.picture} alt='Friend Picture' />
                </div>
             <div className='friendInfo'>
-                 <p>Age: {friend.age}</p>
+                 <p>Age: {friend.age} </p>
                <p>Email: {friend.email}</p>
             </div>
         <button id={friend.id} onClick={e => props.handleDelete(e)}>Delete Friend</button>

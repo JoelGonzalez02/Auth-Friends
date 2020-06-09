@@ -1,18 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axiosWithAuth from '../utils/axiosWithAuth';
 import AddFriend from './AddFriend';
 import Card from './Card';
 import {Link} from 'react-router-dom';
 import {FriendsContext} from '../contexts/friendsContext';
 
-const FriendsList = props => {
+const FriendsList = () => {
+
+    const initialFormState = {
+        id: Date.now(),
+        name: '',
+        age: '',
+        email: '',
+        picture: ''
+    }
 
     const [friends, setFriends] = useState([]);
-    const [input, setInput] = useState('');
+    const [friendsForm, setFriendsForm] = useState(initialFormState);
+    
+    const loggedState = useContext(FriendsContext);
+    const logOut = useContext(FriendsContext);
+
 
     useEffect(() => {
         axiosWithAuth()
-            .get('http://localhost:5000/api/friends', JSON.stringify(localStorage.getItem('token')))
+            .get('http://localhost:5000/api/friends')
             .then(res => {
                 setFriends(res.data)
             })
@@ -22,23 +34,22 @@ const FriendsList = props => {
     }, [])
 
         const handleChange = e => {
-            setInput({
-                ...input, id: Date.now(), [e.target.name] : e.target.value
+            setFriendsForm({
+                ...friendsForm, [e.target.name] : e.target.value
             })
         }
 
         const handleUpdate = e => {
             e.preventDefault();
             axiosWithAuth()
-                .post(`http://localhost:5000/api/friends/`, input)
+                .post(`http://localhost:5000/api/friends/`, friendsForm)
                 .then(res => {
                     setFriends(res.data)
-                   
+                    setFriendsForm(initialFormState);
                 })
                 .catch(err => {
                     console.error('There was an error', err)
                 })
-                 setInput('');
         }
 
         const handleDelete = e => {
@@ -52,20 +63,31 @@ const FriendsList = props => {
         return (
                 <>
                 <FriendsContext.Provider value={friends}>
-                <Link to ='/'><p className='home'>Home</p></Link>
-                <h3>Add a Friend!</h3>
-                <div className='addFriend'>
-                    <AddFriend handleUpdate={handleUpdate} handleChange={handleChange} friends={friends} />
-                </div>
-                <div className='friendsCard'>
+            <nav>
+                    <h1>Goku's Friends</h1>
+                <div className='links'>
+                    <Link to ='/'>Home</Link>
+                    {loggedState ? <a onClick={() => logOut()} href='/'>Log Out</a> : <Link to='/protected'>Login</Link>}
+               </div>
+            </nav>
+
+                  <div className='friendText'>
+                       <h3>Add a Friend!</h3>
+                  </div>
+                   
+                  <div className='addFriend'>
+                    <AddFriend handleUpdate={handleUpdate} handleChange={handleChange} friendsForm={friendsForm}/>
+                  </div>
+
+                  <div className='friendsCard'>
                     {friends.map((friend, index) => {
-                    return (
-                        <div className='friend' key={index}>
-                            <Card friend={friend} handleDelete={handleDelete} />
-                        </div>          
+                        return (
+                            <div className='friend' key={index}>
+                                <Card friend={friend} handleDelete={handleDelete} />
+                            </div>          
                     )
-                })}
-                </div>
+                  })}
+                  </div>
                 </FriendsContext.Provider>
                </>
         )
